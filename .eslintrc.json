@@ -1,0 +1,102 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "coverage",
+    "*.js"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn"
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "warn"
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "off"
+    ],
+    "@typescript-eslint/no-non-null-assertion": [
+      "off"
+    ],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/space-before-blocks": "warn",
+    "@typescript-eslint/semi": [
+      "off"
+    ],
+    "prefer-rest-params": "off",
+    "space-before-blocks": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "no-plusplus": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "func-style": [
+      "off"
+    ],
+    "no-return-await": [
+      "error"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "objectsInObjects": true
+      }
+    ],
+    "space-infix-ops": [
+      "error"
+    ],
+    "space-in-parens": [
+      "error",
+      "never"
+    ],
+    "switch-colon-spacing": [
+      "error"
+    ],
+    "brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": false
+      }
+    ],
+    "no-bitwise": "off",
+    "no-constant-condition": [
+      "error",
+      {
+        "checkLoops": false
+      }
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any"
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 540,
+        "ignoreStrings": true,
+        "ignoreRegExpLiterals": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
+  }
+}
