@@ -31,10 +31,6 @@
   "engines": {
     "node": ">=16.13"
   },
-  "dependencies": {
-    "husky": "^8.0.3",
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
@@ -44,6 +40,7 @@
     "c8": "^7.13.0",
     "eslint": "^8.32.0",
     "glob": "^10.2.5",
+    "husky": "^8.0.3",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.20",
     "power-assert": "^1.6.1",
