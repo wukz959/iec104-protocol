@@ -1,6 +1,6 @@
 {
   "name": "iec104-protocol",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "104 protocol common toolkit",
   "author": "wukz",
   "type": "module",

@@ -2,7 +2,7 @@
 
 // /**
 //  * 
-//  * @description 本文件为104协议解析数据时提供一些默认实现，但这不意味着这些函数符合您的项目需求，作者强烈建议您根据自己数据类型对方法进行重写
+//  * @description This document provides some default implementations for parsing data by the 104 protocol, but this does not mean that these functions meet the needs of your project, and the authors strongly recommend that you rewrite the methods according to your own data types
 //  * 
 //  */
 
@@ -44,8 +44,6 @@
 // }
 
 // /**
-//  * 采集到的值不一定是您所需要的，所以需要对数据进行处理，此处提供一个默认实现，您可配置连接的SetASDUReceivedHandler时指定数据转换方式
-//  * 但需要注意的是，您所设置的数据转换方式有可能将对当前连接产生的全部数据产生影响，若无把握，建议
 //  * @param {*} value 
 //  * @param {*} row 
 //  * @returns 

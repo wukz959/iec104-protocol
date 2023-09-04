@@ -115,15 +115,10 @@ export class Protocol {
     
     this.connection = new Lib.prototype.Connection(this.ip, this.port)
     this.connection.SetASDUReceivedHandler(this.lib60870.prototype.asduReceivedHandler,parameter)
-
-    // this.lib60870.setHandler(() => {
-    //   this.onRecievedData(data)
-    // })
   }
 
   public connect() {
     this.connection.Connect()
-    // this.lib60870.prototype
   }
 
 }

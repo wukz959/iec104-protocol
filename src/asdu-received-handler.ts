@@ -3,7 +3,7 @@ export function asduReceivedHandler(Lib60870) {
     Lib60870.prototype.asduReceivedHandler = function (parameter, asdu) {
         let emit = false
         if (asdu.typeId == Lib60870.prototype.TypeID.M_SP_NA_1) { //1: SinglePointInformation
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -18,7 +18,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_ME_ND_1) {
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -31,7 +31,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_SP_TA_1) {
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -45,7 +45,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_SP_TB_1) {
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -60,7 +60,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_ME_NB_1) {
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -73,7 +73,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.C_SE_NC_1) {//表示某个设备或对象的状态是否开启或关闭
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -87,7 +87,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_ME_TE_1) {
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -100,16 +100,16 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == 41) { //41
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
-                rets.push({val: val})
+                rets.push({ val: val })
                 console.warn(val)
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_ME_NC_1) { //13: MeasuredValueShort
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -121,7 +121,7 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.C_DC_NA_1) { //46
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
@@ -134,28 +134,28 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.C_CS_NA_1) { //ClockSynchronizationCommand
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
-                rets.push({val: val})
+                rets.push({ val: val })
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_EI_NA_1) { //EndOfInitialization 70
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
-                rets.push({val: val})
+                rets.push({ val: val })
                 //console.warn(val);
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.C_IC_NA_1) { //InterrogationCommand 100
-            let rets: Data[] = new Array
+            const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
                 const val = asdu.GetElement(i)
-                rets.push({val: val})
+                rets.push({ val: val })
                 //console.warn(val);
             }
             parameter.onRecievedData(rets)
