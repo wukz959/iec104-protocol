@@ -11,7 +11,7 @@ import { measuredValueScaled } from './measured-value-scaled'
 import { measuredValueShort } from './measured-value-short'
 import { scaledValue } from './scaled-value'
 import { connection } from './connection'
-import { connectionStatistics  } from './connection-statistics'
+import { connectionStatistics } from './connection-statistics'
 import { qualityDescriptor } from './quality-descriptor'
 import { cp24Time2a } from './cp24-time-2a'
 import { cp56Time2a } from './cp56-time-2a'
@@ -21,10 +21,10 @@ import { testCommand } from './test-command'
 import { exception } from './exceptions'
 import { connectionHandler } from './connection-handler'
 import { interrogationHandler } from './interrogation-handler'
-import { asduHandler  } from './asdu-handler'
+import { asduHandler } from './asdu-handler'
 import { asduReceivedHandler } from './asdu-received-handler'
 import { clockSynchronisationHandler } from './clock-synchronisation-handler'
-import { asdu  } from './asdu'
+import { asdu } from './asdu'
 import { bufferFrame } from './buffer-frame'
 import { setpointCommandQualifier } from './setpoint-command-qualifier'
 import { endOfInitialization } from './end-of-initialization'
@@ -35,7 +35,7 @@ import { slave } from './slave'
 import { server } from './server'
 import { clientConnection } from './client-connection'
 
-function Lib60870() {}
+function Lib60870() { }
 Lib60870.prototype.constructor = Lib60870
 helper(Lib60870)
 utils(Lib60870)
@@ -93,7 +93,8 @@ export interface Data {
 }
 
 export interface Option {
-  autoReconnect?: boolean
+  autoReconnect?: boolean,
+  quiet?: boolean
 }
 
 export class Protocol {
@@ -110,11 +111,14 @@ export class Protocol {
     this.onRecievedData = onRecievedData
 
     const parameter = { onRecievedData: this.onRecievedData }
-    
-    this.connection = new Lib.prototype.Connection(this.ip, this.port)
-    this.connection.SetASDUReceivedHandler(this.lib60870.prototype.asduReceivedHandler,parameter)
+
+    this.connection = new this.lib60870.prototype.Connection(this.ip, this.port)
+    this.connection.SetASDUReceivedHandler(this.lib60870.prototype.asduReceivedHandler, parameter)
     if (options?.autoReconnect) {
       this.connection.SetReconnect(options.autoReconnect)
+    }
+    if (options?.quiet) {
+      this.lib60870.prototype.quiet = options.quiet
     }
   }
 

@@ -72,7 +72,7 @@ export function asduReceivedHandler(Lib60870) {
                 rets.push(jsonObject)
             }
             parameter.onRecievedData(rets)
-        } else if (asdu.typeId == Lib60870.prototype.TypeID.C_SE_NC_1) {//表示某个设备或对象的状态是否开启或关闭
+        } else if (asdu.typeId == Lib60870.prototype.TypeID.C_SE_NC_1) {
             const rets: Data[] = []
             for (let i = 0; i < asdu.NumberOfElements; i++) {
                 emit = true
@@ -83,7 +83,10 @@ export function asduReceivedHandler(Lib60870) {
                 jsonObject.Quality = val.Quality.ToString()
                 jsonObject.Timestamp = val.Timestamp.ToString()
                 rets.push(jsonObject)
-                console.warn(jsonObject)
+                if(!Lib60870.prototype?.quiet) {
+                    console.warn(jsonObject)
+                }
+               
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_ME_TE_1) {
@@ -105,7 +108,9 @@ export function asduReceivedHandler(Lib60870) {
                 emit = true
                 const val = asdu.GetElement(i)
                 rets.push({ val: val })
-                console.warn(val)
+                if(!Lib60870.prototype?.quiet) {
+                    console.warn(val)
+                }
             }
             parameter.onRecievedData(rets)
         } else if (asdu.typeId == Lib60870.prototype.TypeID.M_ME_NC_1) { //13: MeasuredValueShort
@@ -160,7 +165,9 @@ export function asduReceivedHandler(Lib60870) {
             }
             parameter.onRecievedData(rets)
         } else {
-            console.log('Unknown message type! (' + asdu.typeId + ')')
+            if(!Lib60870.prototype?.quiet) {
+                console.log('Unknown message type! (' + asdu.typeId + ')')
+            }
         }
         if (emit && Object.keys(Lib60870.prototype.informationObjects).length > 0) {
             Lib60870.prototype.EmitInformationObjects(Lib60870.prototype.informationObjects)
