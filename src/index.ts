@@ -114,8 +114,11 @@ export class Protocol {
 
     this.connection = new this.lib60870.prototype.Connection(this.ip, this.port)
     this.connection.SetASDUReceivedHandler(this.lib60870.prototype.asduReceivedHandler, parameter)
-    if(options){
-      optionsHandler(options)
+    if (options?.autoReconnect) {
+      this.connection.SetReconnect(options.autoReconnect)
+    }
+    if (options?.quiet) {
+      this.lib60870.prototype.quiet = options.quiet
     }
   }
 
@@ -123,13 +126,4 @@ export class Protocol {
     this.connection.Connect()
   }
 
-}
-
-function optionsHandler(options: Option) {
-  if (options?.autoReconnect) {
-    this.connection.SetReconnect(options.autoReconnect)
-  }
-  if (options?.quiet) {
-    this.lib60870.prototype.quiet = options.quiet
-  }
 }
