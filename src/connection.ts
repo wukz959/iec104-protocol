@@ -35,14 +35,14 @@ export function connection(Lib60870) {
         TESTFR_ACT_MSG = new Uint8Array(6)
         TESTFR_CON_MSG = new Uint8Array(6)
         keepAliveTimer: any = null
-        reconnectTimer : any = null
+        reconnectTimer: any = null
         reconnectT1 = 10000
         reconnectT2 = 60000
         reconnectTLimit = 10
         reconnectTCounter = 0
+        quiet = false
 
 
-        
 
         constructor(hostname, tcpPort) {
             this.STARTDT_ACT_MSG[0] = 0x68
@@ -101,24 +101,27 @@ export function connection(Lib60870) {
         Connect() {
             this.connecting = true
             const $this = this
-            return new Promise(function(resolve, reject) {
-
+            return new Promise(function (resolve, reject) {
                 const socket = new net.Socket({ readable: true, writable: true, allowHalfOpen: false })
-
                 socket.connect(($this as any).tcpPort, ($this as any).hostname)
-
                 socket.on('error', function (data) {
-                    console.log(data.toString())
+                    if (!Lib60870.prototype?.quiet) {
+                        console.error(data.toString())
+                    }
                     resolve(false)
                 })
 
                 socket.on('data', function (data) {
-                    console.log('data from: ' + ($this as any).hostname)
+                    if (!Lib60870.prototype?.quiet) {
+                        console.log('data from: ' + ($this as any).hostname)
+                    }
                     $this.checkMessage(data, data.length)
                 })
 
                 socket.on('timeout', function (data) {
-                    console.log('Timeout', data.toString())
+                    if (!Lib60870.prototype?.quiet) {
+                        console.log('Timeout: ',($this as any).hostname, ' ', data.toString())
+                    }
                     $this.running = false;
                     ($this as any).socketError = true
                     socket.end()
@@ -141,7 +144,9 @@ export function connection(Lib60870) {
                 })
 
                 socket.on('end', function () {
-                    console.log('Disconnected from server')
+                    if (!Lib60870.prototype?.quiet) {
+                        console.warn('Disconnected from server')
+                    }
                 })
 
                 $this.socket = socket
@@ -169,7 +174,9 @@ export function connection(Lib60870) {
                 const reconnectTimeout = ($this.reconnectTCounter > $this.reconnectTLimit) ? $this.reconnectT2 : $this.reconnectT1
                 this.reconnectTimer = setTimeout(function () {
                     if (!$this.running) {
-                        console.warn($this.reconnectTCounter, reconnectTimeout)
+                        if (!Lib60870.prototype?.quiet) {
+                            console.warn($this.reconnectTCounter, reconnectTimeout)
+                        }
                         $this.ResetConnection()
                         //$this.oldestSentASDU = -1;
                         //$this.newestSentASDU = -1;
@@ -224,7 +231,7 @@ export function connection(Lib60870) {
                     }
                     if (messageHandled == false) {
                         if (this.asduReceivedHandler != null) {
-                            (this as any).asduReceivedHandler(this.asduReceivedHandlerParameter, asdu)  
+                            (this as any).asduReceivedHandler(this.asduReceivedHandlerParameter, asdu)
                         }
                     }
                 } catch (error) {
@@ -497,7 +504,8 @@ export function connection(Lib60870) {
         }
 
         DebugLog(message) {
-            if (this.debugOutput) {
+            // if (this.debugOutput) {
+            if (!Lib60870.prototype?.quiet) {
                 console.log('CS104 MASTER CONNECTION ' + this.connectionID + ': ' + message)
             }
         }

@@ -35,6 +35,42 @@ conn2.connect()
 
 ```
 
+## Options
 
+### autoReconnect 
 
-​	
+By setting the autoReconnect option, you can automatically reconnect when the connection is disconnected
+
+```ts
+import { Protocol, Option } from 'iec104-protocol'
+/*
+If the connection is disconnected, the reconnection is automatically attempted every 10,000 ms by default. If the reconnection fails for 10 times, the reconnection interval changes to 60,000ms
+*/
+const option:Option = { autoReconnect: true}
+const conn = new Protocol('198.123.0.1', 2404, (data) => {
+    for (const tmp of data) {
+        console.log(tmp)
+    }
+}, option)
+conn.connect()
+
+```
+
+### quiet	
+
+The code will output some debugging information by default, you can choose to disable it by setting the quiet option to true
+
+```ts
+import { Protocol, Option } from 'iec104-protocol'
+
+const option:Option = { quiet: true }
+const conn = new Protocol('198.123.0.1', 2404, (data) => {
+    for (const tmp of data) {
+        console.log(tmp)
+    }
+}, option)
+
+conn.connect()
+
+```
+
