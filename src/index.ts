@@ -83,6 +83,7 @@ export interface Data {
   Quality?: string,
   MeasuredValueNormalizedWithoutQuality?: number,
   SinglePointWithCP24Time2a?: number,
+  SinglePointWithCP56Time2a?: number
   Timestamp?: string,
   MeasuredValueScaled?: number,
   SetpointCommandShort?: number,
@@ -92,7 +93,7 @@ export interface Data {
 }
 
 export interface Option {
-  key?: string
+  autoReconnect?: boolean
 }
 
 export class Protocol {
@@ -109,12 +110,12 @@ export class Protocol {
     this.onRecievedData = onRecievedData
 
     const parameter = { onRecievedData: this.onRecievedData }
-    if (options?.key) {
-      // Dosomething
-    }
     
     this.connection = new Lib.prototype.Connection(this.ip, this.port)
     this.connection.SetASDUReceivedHandler(this.lib60870.prototype.asduReceivedHandler,parameter)
+    if (options?.autoReconnect) {
+      this.connection.SetReconnect(options.autoReconnect)
+    }
   }
 
   public connect() {
